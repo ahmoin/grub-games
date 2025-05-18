@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.510.0/dist/umd/lucide.min.js"></script>
     <script src="mobile-nav.js" defer></script>
     <script src="create-lucide-icons.js" defer></script>
-    <script src="auth.js" defer></script>
     <style type="text/tailwindcss">
       @theme {
         --color-special: #da373d;
@@ -102,5 +101,64 @@
       </nav>
     </div>
     <!-- end of header -->
+
+    <main class="flex min-h-[calc(100vh-48px)] flex-col items-center justify-center bg-gray-50 px-4 py-8">
+      <div class="w-full max-w-md space-y-8">
+        <div class="text-center">
+          <h2 class="text-2xl font-bold tracking-tight text-gray-900">Login to Grub Games</h2>
+        </div>
+        <form class="space-y-6" action="/" method="POST" onsubmit="localStorage.setItem('username', document.getElementById('username').value);">
+          <div class="space-y-4 rounded-lg border bg-white p-6 shadow-sm">
+            <div>
+              <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+              <div class="mt-1">
+                <input
+                  id="username"
+                  name="username"
+                  type="text"
+                  required
+                  class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-special focus:outline-none focus:ring-1 focus:ring-special"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+              <div class="mt-1">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:border-special focus:outline-none focus:ring-1 focus:ring-special"
+                />
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="submit"
+                class="flex w-full items-center justify-center rounded-md bg-special px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-special/90 focus:outline-none focus:ring-2 focus:ring-special focus:ring-offset-2"
+              >
+                <i data-lucide="log-in" class="mr-2 h-4 w-4"></i>
+                Sign in
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <div class="flex flex-col items-center space-y-4 text-sm">
+          <a href="/forgot-password" class="text-special hover:text-special/90">
+            Forgot Password or Username?
+          </a>
+          <p class="text-gray-600">
+            Don't have an account?
+            <a href="/signup" class="font-medium text-special hover:text-special/90">
+              Sign Up
+            </a>
+          </p>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
