@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grub Games</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src=" https://cdn.jsdelivr.net/npm/lucide@0.510.0/dist/umd/lucide.min.js"></script>
+    <script src="mobile-nav.js" defer></script>
+    <script src="create-lucide-icons.js" defer></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-special: #da373d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- start of header -->
+    <header class="sticky top-0 z-50 flex w-full items-center border-b bg-white">
+      <div class="flex h-12 w-full items-center gap-2 px-2 pr-4">
+        <!-- start of md screen only nav -->
+        <div class="mr-4 hidden md:flex">
+          <a class="mr-4 flex items-center gap-2 lg:mr-6 text-special" href="/">
+            <span class="font-bold text-2xl">Grub Games</span>
+          </a>
+          <nav class="flex items-center gap-4 text-sm xl:gap-6">
+            <a class="transition-colors hover:text-foreground/80 text-foreground/80" href="/">Home</a>
+            <a class="transition-colors hover:text-foreground/80 text-foreground/80" href="/games">Games</a>
+          </nav>
+        </div>
+        <!-- end of md screen only nav -->
+
+        <!-- start of mobile nav button -->
+        <div class="flex flex-row items-center gap-8 md:hidden" type="button">
+          <button id="menuToggle" class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="!size-6" aria-label="Toggle Menu">
+              <title>Toggle Menu</title>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+            </svg>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+          <a class="mr-4 flex items-center gap-2 lg:mr-6 text-special" href="/">
+            <span class="inline-block font-bold text-lg">Grub Games</span>
+          </a>
+        </div>
+        <!-- end of mobile nav button -->
+
+        <div class="ml-auto flex items-center">
+          <button class="inline-flex items-center justify-center gap-2 rounded-md bg-special px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-special/90">
+            <i data-lucide="log-in" class="h-4 w-4"></i>
+            Log in
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="mobileNav"
+      class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-lg md:hidden translate-y-full transition-transform duration-400 ease-out"
+    >
+      <nav class="flex flex-col p-4 space-y-4">
+        <a
+          class="text-lg font-medium transition-colors hover:text-foreground/80"
+          href="/"
+          >Home</a
+        >
+        <a
+          class="text-lg font-medium transition-colors hover:text-foreground/80"
+          href="/games"
+          >Games</a
+        >
+      </nav>
+    </div>
+    <!-- end of header -->
+  </body>
+</html>
