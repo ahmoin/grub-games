@@ -142,21 +142,102 @@
         </div>
       </header>
 
+      <main class="container mx-auto px-4 py-8">
+        <div class="relative mb-8">
+          <input type="search" placeholder="Search games..." class="w-full rounded-lg border px-4 py-2 pl-10 focus:border-special focus:outline-none focus:ring-2 focus:ring-special/50">
+          <i data-lucide="search" class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"></i>
+        </div>
+
+        <div class="relative mb-12 overflow-hidden rounded-xl">
+          <div class="flex snap-x snap-mandatory overflow-x-auto">
+            <div class="snap-start shrink-0 w-full">
+              <div class="relative h-[400px]">
+                <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/39aa66a4b23c817de9d9a894d9584d6709db96a4_naikrashchi-prytsily-dlia-cs2-35618781205745.png" alt="Counter Strike 2" class="h-full w-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 p-6 text-white">
+                  <h3 class="text-2xl font-bold">Counter-Strike 2</h3>
+                  <p class="mt-2">Counter-Strike 2 is the largest technical leap forward in Counter-Strike’s history, ensuring new features and updates for years to come.</p>
+                  <div class="mt-3 flex gap-2">
+                    <span class="rounded-full bg-special px-3 py-1 text-sm">Action</span>
+                    <span class="rounded-full bg-blue-500 px-3 py-1 text-sm">FPS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="snap-start shrink-0 w-full">
+              <div class="relative h-[400px]">
+                <img src="https://cdn.akamai.steamstatic.com/steam/apps/394360/header.jpg" alt="Hearts of Iron IV" class="h-full w-full object-cover">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 p-6 text-white">
+                  <h3 class="text-2xl font-bold">Hearts of Iron IV</h3>
+                  <p class="mt-2">Your ability to lead your nation is your supreme weapon, the strategy game Hearts of Iron IV lets you take command of any nation in World War II; the most engaging conflict in world history.</p>
+                  <div class="mt-3 flex gap-2">
+                    <span class="rounded-full bg-purple-500 px-3 py-1 text-sm">Strategy</span>
+                    <span class="rounded-full bg-green-500 px-3 py-1 text-sm">Multiplayer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+            <button class="h-2 w-2 rounded-full bg-white"></button>
+            <button class="h-2 w-2 rounded-full bg-white/50"></button>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <div class="border-b">
+            <div class="flex gap-4">
+              <button class="border-b-2 border-special px-4 py-2 text-special">Popular</button>
+              <button class="px-4 py-2 text-gray-500 hover:text-gray-700">New Releases</button>
+              <button class="px-4 py-2 text-gray-500 hover:text-gray-700">Coming Soon</button>
+            </div>
+          </div>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="group relative overflow-hidden rounded-lg border transition-all hover:-translate-y-1 hover:shadow-lg">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/2379780/header.jpg" alt="Balatro" class="w-full object-cover">
+              <div class="p-4">
+                <h3 class="font-bold">Balatro</h3>
+                <p class="mt-1 text-sm text-gray-600">The poker roguelike. Balatro is a hypnotically satisfying deckbuilder where you play illegal poker hands, discover game-changing jokers, and trigger adrenaline-pumping, outrageous combos.</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="font-bold text-special">$29.99</span>
+                  <span class="rounded-full bg-green-100 px-2 py-1 text-xs text-green-800">90% Positive</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-12">
+          <h2 class="mb-6 text-2xl font-bold">Frequently Asked Questions</h2>
+          <div class="space-y-4">
+            <details class="rounded-lg border">
+              <summary class="cursor-pointer px-6 py-4 font-medium">How do I purchase games?</summary>
+              <div class="border-t px-6 py-4">
+                <p class="text-gray-600">You can easily purchase games by creating an account, adding funds to your wallet, and clicking the purchase button on any game page.</p>
+              </div>
+            </details>
+            <details class="rounded-lg border">
+              <summary class="cursor-pointer px-6 py-4 font-medium">What payment methods do you accept?</summary>
+              <div class="border-t px-6 py-4">
+                <p class="text-gray-600">We accept credit cards, PayPal, and various other digital payment methods. Gift cards are also available for purchase.</p>
+              </div>
+            </details>
+            <details class="rounded-lg border">
+              <summary class="cursor-pointer px-6 py-4 font-medium">How do I download my games?</summary>
+              <div class="border-t px-6 py-4">
+                <p class="text-gray-600">After purchasing, games will appear in your library. Simply click the download button to start playing.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </main>
+
       <div
         id="mobileNav"
         class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-lg md:hidden translate-y-full transition-transform duration-400 ease-out"
       >
         <nav class="flex flex-col p-4 space-y-4">
-          <a
-            class="text-lg font-medium transition-colors hover:text-foreground/80"
-            href="https://ahmoin.github.io/grub-games"
-            >Home</a
-          >
-          <a
-            class="text-lg font-medium transition-colors hover:text-foreground/80"
-            href="https://ahmoin.github.io/grub-games/games"
-            >Games</a
-          >
+          <a class="text-lg font-medium transition-colors hover:text-foreground/80" href="https://ahmoin.github.io/grub-games">Home</a>
+          <a class="text-lg font-medium transition-colors hover:text-foreground/80" href="https://ahmoin.github.io/grub-games/games"Games</a>
         </nav>
       </div>
       <!-- end of header -->
