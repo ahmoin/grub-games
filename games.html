@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=width=device-width, initial-scale=1.0" />
+    <title>Games - Grub Games</title>
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Grub Games" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.510.0/dist/umd/lucide.min.js"></script>
+    <script src="mobile-nav.js" defer></script>
+    <script src="create-lucide-icons.js" defer></script>
+    <script src="auth.js" defer></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-special: #ffcb05;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- start of header -->
+    <header class="sticky top-0 z-50 flex w-full items-center border-b bg-white">
+      <div class="flex h-12 w-full items-center gap-2 px-2 pr-4">
+        <!-- start of md screen only nav -->
+        <div class="mr-4 hidden md:flex">
+          <a class="mr-4 flex items-center gap-2 lg:mr-6 text-special" href="/">
+            <span class="font-bold text-2xl">Grub Games</span>
+          </a>
+          <nav class="flex items-center gap-4 text-sm xl:gap-6">
+            <a class="transition-colors hover:text-foreground/80 text-foreground/80" href="/">Home</a>
+            <a class="transition-colors hover:text-foreground/80 text-foreground/80" href="/games">Games</a>
+          </nav>
+        </div>
+        <!-- end of md screen only nav -->
+
+        <!-- start of mobile nav button -->
+        <div class="flex flex-row items-center gap-8 md:hidden" type="button">
+          <button id="menuToggle" class="inline-flex items-center justify-center whitespace-nowrap rounded-md font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none"  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="!size-6" aria-label="Toggle Menu">
+              <title>Toggle Menu</title>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5"></path>
+            </svg>
+            <span class="sr-only">Toggle Menu</span>
+          </button>
+          <a class="mr-4 flex items-center gap-2 lg:mr-6 text-special" href="/">
+            <span class="inline-block font-bold text-lg">Grub Games</span>
+          </a>
+        </div>
+        <!-- end of mobile nav button -->
+
+        <div class="ml-auto flex items-center">
+          <a href="/login" id="loginButton">
+            <button class="inline-flex items-center justify-center gap-2 rounded-md bg-special cursor-pointer px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-special/90">
+              <i data-lucide="log-in" class="h-4 w-4"></i>
+              Log in
+            </button>
+          </a>
+
+          <div id="userDropdown" class="relative hidden">
+            <button id="dropdownTrigger" class="flex items-center gap-2 px-2 py-1 rounded-lg hover:bg-gray-100 transition-colors">
+              <div class="h-8 w-8 rounded-lg overflow-hidden">
+                <img id="userAvatar" alt="User avatar" class="h-full w-full object-cover"/>
+              </div>
+              <div class="grid flex-1 text-left text-sm leading-tight">
+                <span id="usernameDisplay" class="truncate font-semibold"></span>
+              </div>
+              <i data-lucide="chevrons-up-down" class="ml-1 h-4 w-4 text-gray-500"></i>
+            </button>
+
+            <div id="dropdownContent" class="absolute right-0 mt-2 w-48 rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 hidden">
+              <button class="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i data-lucide="users" class="h-4 w-4"></i>
+                Switch Accounts
+              </button>
+              <button class="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                <i data-lucide="settings" class="h-4 w-4"></i>
+                Settings
+              </button>
+              <button id="logoutButton" class="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                <i data-lucide="log-out" class="h-4 w-4"></i>
+                Log out
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div
+      id="mobileNav"
+      class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t shadow-lg md:hidden translate-y-full transition-transform duration-400 ease-out"
+    >
+      <nav class="flex flex-col p-4 space-y-4">
+        <a
+          class="text-lg font-medium transition-colors hover:text-foreground/80"
+          href="/"
+          >Home</a
+        >
+        <a
+          class="text-lg font-medium transition-colors hover:text-foreground/80"
+          href="/games"
+          >Games</a
+        >
+      </nav>
+    </div>
+    <!-- end of header -->
+
+    <main class="container mx-auto px-4 py-8">
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-6">Games</h1>
+        <div class="flex gap-4 overflow-x-auto pb-4">
+          <a href="#all" class="px-4 py-2 bg-special text-white rounded-lg hover:bg-special/90">All Games</a>
+          <a href="#sandbox" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Sandbox</a>
+          <a href="#shooter" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Shooter</a>
+          <a href="#strategy" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Strategy</a>
+          <a href="#adventure" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Adventure</a>
+          <a href="#sports" class="px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200">Sports</a>
+        </div>
+      </div>
+
+      <section id="sandbox" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Sandbox Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg" alt="Minecraft" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Minecraft</h3>
+              <p class="text-gray-600 text-sm mb-4">Build anything you can imagine, uncover eerie mysteries, and survive the night in the ultimate sandbox game. In Minecraft, every playthrough is different, and unforgettable adventures await behind every corner.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg" alt="Terraria" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Terraria</h3>
+              <p class="text-gray-600 text-sm mb-4">Dig, fight, explore, build! Nothing is impossible in this action-packed adventure game. The world is your canvas and the ground itself is your paint.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/252490/header.jpg" alt="Rust" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Rust</h3>
+              <p class="text-gray-600 text-sm mb-4">The only aim in Rust is to survive. Everything wants you to die - the island's wildlife, other inhabitants, the environment, and other survivors.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1222670/header.jpg" alt="The Sims 4" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">The Sims 4</h3>
+              <p class="text-gray-600 text-sm mb-4">Create a unique world of Sims that’s an expression of you! Make custom Sims, build incredible homes, and play with life. Expand your game with packs and kits to discover more fashion, décor, careers, and more.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="shooter" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Shooter Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="CS:GO" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Counter-Strike 2</h3>
+              <p class="text-gray-600 text-sm mb-4">Counter-Strike 2 is the largest technical leap forward in Counter-Strike’s history, ensuring new features and updates for years to come. Counter-Strike 2 is a free upgrade to CS:GO.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="Team Fortress 2" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Team Fortress 2</h3>
+              <p class="text-gray-600 text-sm mb-4">Nine distinct classes provide a broad range of tactical abilities and personalities. Constantly updated with new game modes, maps, equipment and, most importantly, hats!</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/359550/header.jpg" alt="Rainbow Six Siege" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Tom Clancy's Rainbow Six® Siege</h3>
+              <p class="text-gray-600 text-sm mb-4">Tom Clancy's Rainbow Six® Siege is an elite, tactical team-based shooter where superior planning and execution triumph.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cmsassets.rgpub.io/sanity/images/dsfx7636/news_live/86af74136d5204ab386ee8ace5094de4f77d47d8-1920x1080.jpg" alt="Valorant" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">VALORANT</h3>
+              <p class="text-gray-600 text-sm mb-4">You have 13 rounds to attack and defend your side using sharp gunplay and tactical abilities. And, with one life per-round, you'll need to think faster than your opponent if you want to survive.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="strategy" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Strategy Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/394360/header.jpg" alt="Hearts of Iron IV" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Hearts of Iron IV</h3>
+              <p class="text-gray-600 text-sm mb-4">Your ability to lead your nation is your supreme weapon, the strategy game Hearts of Iron IV lets you take command of any nation in World War II; the most engaging conflict in world history.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1295660/header.jpg" alt="Sid Meier's Civilization VII" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Sid Meier's Civilization VII</h3>
+              <p class="text-gray-600 text-sm mb-4">The award-winning strategy game franchise returns with a revolutionary new chapter. Sid Meier's Civilization® VII empowers you to build the greatest empire the world has ever known!</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/2379780/header.jpg" alt="Balatro" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Balatro</h3>
+              <p class="text-gray-600 text-sm mb-4">The poker roguelike. Balatro is a hypnotically satisfying deckbuilder where you play illegal poker hands, discover game-changing jokers, and trigger adrenaline-pumping, outrageous combos.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="adventure" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Adventure Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Red Dead Redemption 2</h3>
+              <p class="text-gray-600 text-sm mb-4">Red Dead Redemption 2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/413150/header.jpg" alt="Stardew Valley" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Stardew Valley</h3>
+              <p class="text-gray-600 text-sm mb-4">You've inherited your grandfather's old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land?</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sports" class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Sports Games</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/252950/header.jpg" alt="Rocket League" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">Rocket League</h3>
+              <p class="text-gray-600 text-sm mb-4">Rocket League is a high-powered hybrid of arcade-style soccer and vehicular mayhem with easy-to-understand controls and fluid, physics-driven competition. Rocket League includes casual and competitive Online Matches.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://drop-assets.ea.com/images/64t24CdVrcRPdM2OmYTOAQ/3ffbb36bd5d142d663beaf4fcb38cccb/New_Project__2_.jpg" alt="EA SPORTS FC™ 25" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">EA SPORTS FC™ 25</h3>
+              <p class="text-gray-600 text-sm mb-4">Experience more ways to win for the club in EA SPORTS FC™ 25. Team up with friends in your favourite modes with the new 5v5 Rush and manage your club to victory as FC IQ delivers more tactical control than ever before.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+          <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="bg-gray-200 aspect-video">
+              <img src="https://cdn.akamai.steamstatic.com/steam/apps/2878980/header.jpg" alt="NBA 2K25" class="w-full h-full object-cover">
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-lg mb-2">NBA 2K25</h3>
+              <p class="text-gray-600 text-sm mb-4">Command every court with authenticity and realism Powered by ProPLAY™, giving you ultimate control over how you play in NBA 2K25. Define your legacy in MyCAREER, MyTEAM, MyNBA, and The W.</p>
+              <button class="w-full bg-special text-white py-2 rounded-md hover:bg-special/90">Play Now</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
