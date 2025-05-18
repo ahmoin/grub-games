@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   document.getElementById('logoutButton')?.addEventListener('click', () => {
     localStorage.removeItem('username');
-    window.location.href = '/';
+    window.location.href = 'https://ahmoin.github.io/grub-games';
   });
 
   updateAuthUI();
